@@ -1,0 +1,39 @@
+{
+  "name": "slides-out",
+  "version": "1.0.0",
+  "description": "Export your Google Slides to open formats",
+  "main": "lib/exporter.js",
+  "bin": {
+    "slides-out": "./bin/slides-out.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "google-slides",
+    "presentation",
+    "export",
+    "screenshot",
+    "markdown",
+    "cli",
+    "playwright"
+  ],
+  "author": "olizilla",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olizilla/slides-out.git"
+  },
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

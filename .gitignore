@@ -1,0 +1,10 @@
+node_modules/
+
+# Generated slide output directories (date-prefixed)
+[0-9][0-9][0-9][0-9]-*-*/
+
+# Test output
+test_output*/
+
+# npm pack artifacts
+*.tgz
