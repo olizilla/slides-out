@@ -81,11 +81,7 @@ async function main() {
     }
 
     console.log(`Loading slides: ${presentationId}`)
-    
-    if (maxSlides !== undefined) {
-      console.log(`Max slides: ${maxSlides}`);
-    }
-    
+
     const result = await exportSlides(presentationId, outputDir, {
       pubDateObj,
       maxSlides,
