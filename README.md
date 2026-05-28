@@ -51,12 +51,54 @@ slides-out <url-or-id> [options]
 - `--max-slides <number>`: Limit the number of slides to export (useful for testing/previews).
 - `-h, --help`: Show usage details.
 
-### Example
+## Example
+
+_Extract the first 2 slides to the `./example` dir. Use speaker notes as the text. Use the slide number as the image alt text._
 
 ```bash
 slides-out 1p-vwbdQgK_wU4Lzj75cWnt5rxd60FQexiFR76XqP5Mg \
--o demo --alt-text index --text speaker --max-slides 2
+-o example --alt-text index --text speaker --max-slides 2
 ```
+
+**Output:**
+
+```
+./example
+├── index.md
+├── slide-1.png  # 1600x900px, 115kb
+└── slide-2.png  # 1600x900px, 94kb
+```
+
+`example/index.md`
+
+```md
+# Digital Interop in the NHS
+
+![Slide 1](slide-1.png)
+
+I’m going to talk about digital interop in the NHS, starting with my motivation:
+- the bad things that happen when it fails
+- The realities of what is holding up progress
+- Some ideas from academia on patterns of nation scale digital transformation.
+- And then look at work that is happening here and in Catalonia.
+
+![Slide 2](slide-2.png)
+
+To declare my biases up front
+I believe open source code, open data formats and open digital protocols are the essential ingredients for interoperability.
+...
+---
+
+_Original Deck: [docs.google.com/presentation/d/1p-vwbdQgK_wU4Lzj75cWnt5rxd60FQexiFR76XqP5Mg](https://docs.google.com/presentation/d/1p-vwbdQgK_wU4Lzj75cWnt5rxd60FQexiFR76XqP5Mg/edit)_
+
+_Published: 2026-05-28_
+
+```
+
+`example/slide-1.png`
+
+![Slide 1](example/slide-1.png)
+
 
 ## How it works
 
