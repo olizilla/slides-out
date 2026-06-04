@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'fs';
 import path from 'path';
+import { launchBrowser } from '../lib/browser.js';
 import { 
   parsePresentationId, 
   parseDate, 
@@ -353,7 +354,7 @@ test('rich text facets parse and render formatting correctly', () => {
   assert.equal(renderHtml(resQuote), '<strong>works</strong>” indeed');
 });
 
-test('renderHtml, escapeHtml, and generateHtml output format verification', () => {
+test('renderHtml, escapeHtml, and generateHtml output format verification', async () => {
   // Test escapeHtml
   assert.equal(escapeHtml('Hello <world> & "friends"'), 'Hello &lt;world&gt; &amp; &quot;friends&quot;');
 
@@ -375,10 +376,16 @@ test('renderHtml, escapeHtml, and generateHtml output format verification', () =
   // Test generateHtml structure
   const title = 'Test Slides';
   const slides = [{ id: 's1', imagePath: 's-1.png', notes: 'Note 1', slideText: '' }];
-  const html = generateHtml(title, slides, '123', '2026-05-25', { altText: 'speaker' });
-  const expectedHtml = fs.readFileSync(new URL('./fixtures/generateHtml-expected.html', import.meta.url), 'utf8');
-  
-  assert.equal(html, expectedHtml);
+
+  const browser = await launchBrowser();
+  const page = await browser.newPage();
+  try {
+    const html = await generateHtml(page, title, slides, '123', '2026-05-25', { altText: 'speaker' });
+    const expectedHtml = fs.readFileSync(new URL('./fixtures/generateHtml-expected.html', import.meta.url), 'utf8');
+    assert.equal(html.trim(), expectedHtml.trim());
+  } finally {
+    await browser.close();
+  }
 });
 
 test('scrapeSlides with format html option writes index.html', async () => {
